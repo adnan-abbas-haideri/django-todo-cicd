@@ -1,14 +1,22 @@
+@Library('Shared-libraries') _
 pipeline {
     agent {label '007'}
     stages{
-        stage('code'){
+        stage("Greeetings"){
+            steps{
+                script{
+                    greetings()
+                }
+            }
+        }
+        stage('Code'){
             steps{
                 echo "This is cloning the code"
                 git url: "https://github.com/adnan-abbas-haideri/django-todo-cicd", branch: "main"
                 echo "Code Clone Sucessfull"
             }
         }
-        stage('build'){
+        stage('Build'){
             steps{
                 sh "whoami"
                 echo "This is building the code"
@@ -28,7 +36,7 @@ pipeline {
                     }
             }
         }
-        stage('deploy'){
+        stage('Deploy'){
             steps{
                 
                 echo "This is deploying the code"
